@@ -5,4 +5,7 @@ build/*
 !build/.gitkeep 
 
 
+# Dependency directories
+node_modules/
+
 .env
