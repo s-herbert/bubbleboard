@@ -10,7 +10,7 @@ class BoardContainer extends Component {
     return(
       <Well id="boardContainer">
         <h1>BOARD CONTAINER</h1>
-        <text>{"<BubbleBoard />"} </text>
+        <BubbleBoard object = {myObject}/>
       </Well>
     )
   }
