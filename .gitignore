@@ -4,6 +4,7 @@ build/*
 # exception to the rule, can't commit empty folders
 !build/.gitkeep 
 node_modules
+server/keys.js
 
 
 .env

@@ -1,4 +1,4 @@
-const User = require('./UserModel.jsx');
+const User = require('../models/UserModel');
 
 const UserController = {
 
