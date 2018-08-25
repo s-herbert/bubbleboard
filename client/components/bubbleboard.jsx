@@ -1,63 +1,160 @@
 import React, { Component } from 'react';
-import masterBubble from './masterBubble.jsx';
-
-export const BubbleOb = (parent, offsetX, offsetY, style, data, ID, children) => {
-    this.parent = parent;
-    this.offsets = {x: offsetX, y: offsetY},
-    this.pos = {x: this.parent.pos.x + this.offsets.x,
-                y: this.parent.pos.y + this.offsets.y};
-    this.style = style;
-    this.data = data;
-    this.ID = this.parent.ID + ID;
-    this.children = children;
-
-    return this;
-}
+import { ForceGraph2D } from 'react-force-graph';
 
 const BubbleBoard = (props) => {
     let bbStyle = {
-        width: '200px',
-        height: '200px',
-        backgroundColor: '#c1fbff',
+        width: '1600px',
+        height: '800px',
+       
     }
 
-    //Master bubble takes a "Master Bubble Object"
-    //Its the same as a regular bubble object, but it's various properties
-    //override the defaults, which normally inherit from the parent. lets say
-    //the bubble object looks like this:
-    /*
+    let nodes = []
+    let links = [];
 
-    Bubble {
-        parent: {Bubble},
-        offsets: {x: xOffset, y: yOffset}, //generate angle data based on this
-        position: {x: parentposx + offsetx, y: parentposy + offsety}, 
-                     //parents grab this data from children to render them
-        ID: //The first part of an ID is the concatenation of all the parent ID's, then an ID that is just generated to be unique
-            //from its siblings.
-        style: {various CSS styling},
-        data: String,
-                     //key-value pairs whose values are objects/arrays just display the key, and then those things
-                     //are in children bubbles. key-value pairs with primitive values display that value and their keys;
+    //props.bubbles is an array of bubbleob objects, which you can use to generate bubbleob elements
 
-        children: [Bubbles] 
-                     //regular bubble objects
+    const bubbleify = (ob) => {
+      let bubble = BubbleOb();
+      
+      let keys = Object.keys(ob);
+  
+      for(let key of keys){
+        if(typeof ob[key] === 'object'){
+          let newBubble = bubbleify(ob[key]);
+  
+          newBubble.parent = ob;
+          newBubble.key = key;
+          bubble.children.push(newBubble);
+        }
+        else {
+          let newPrimBubble = BubbleOb();
+          newPrimBubble.data = ob[key];
+          newPrimBubble.parent = ob;
+          newPrimBubble.key = key;
+          bubble.children.push(newPrimBubble);
+        }
+      }
+      
+      return bubble;
+  
+    }
+  
+    const nodeify = (bubble) => {
+      let thisNode = {id: nodes.length, nodeLabel: bubble.key, color:'#333333'}
+      if(bubble.data){thisNode.nodeLabel += ':'+bubble.data}
+      nodes.push(thisNode);
+      for(let i = 0; i < bubble.children.length; i++){
+        let childNode = nodeify(bubble.children[i])
+        let link = {source: thisNode.id,
+                    target: childNode.id};
+        links.push(link);
+        
+      }
+      return thisNode;
+    }
+  
+  
+    const BubbleOb = (parent, offsetX, offsetY, style, data, ID, children = [], key) => {
+      let bubble = {};
+      bubble.key = key;
+      bubble.parent = parent;
+      bubble.offsets = {x: offsetX, y: offsetY}
+  
+      if(bubble.parent){
+        bubble.pos = {x: bubble.parent.pos.x + bubble.offsets.x,
+                    y: bubble.parent.pos.y + bubble.offsets.y};
+      }
+      
+      bubble.style = style;
+      bubble.data = data; //shouldnt be anything unless its a primitive value
+      
+      bubble.children = [];
+  
+      return bubble;
     }
 
-    the bubble COMPONENTS take bubble OBJECTS as props, then render their children, passing them each their bubble object
-    the bubble components have a function that takes the data, style, and position out of the child objects and renders them as JSX elements.
-    these generated children elements positions are locked to d3 nodes, whose default positions are the bubble object positions.
-    Haven't quite gotten to that yet, but I will. Next on to make bubbleify.
+    
 
-    */
+    nodeify(bubbleify(props.object));
+
+
+    let bubbleData = {
+      nodes: nodes,
+      links: links
+    }
+
+    let el = 
+    <ForceGraph2D graphData = {bubbleData}
+    backgroundColor = "#eeeeee" width={800}
+    height={1800} nodeRelSize={10} linkWidth={8} 
+    nodeCanvasObject = {(node, ctx, globalScale)=>{
+      const label = node.nodeLabel;
+      const fontSize = 12;
+      ctx.font = `${fontSize}px Sans-Serif`;
+      const textWidth = ctx.measureText(label).width;
+      const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 1); // some padding
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = node.color;
+      ctx.fillText(label, node.x, node.y);
+
+    }}/>;
 
 
     
-    let el = 
-    <canvas style = {bbStyle}>
-        <masterBubble bubbles = {props.masterBubble}></masterBubble>
-    </canvas>
 
     return el;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default BubbleBoard;
