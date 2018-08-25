@@ -13,7 +13,6 @@ body{
 }
 
 #main {
-  background:blue;
   display: flex;
   align-content: center;
   height: 80vh;
@@ -21,12 +20,12 @@ body{
 
 #sidebar {
   width: 25%;
-  background: red;
+  background: lightblue;
   height: 100%;
 }
 
 #boardContainer {
-  background: green;
+  background: black;
   width: 75%;
   height: 100%;
   margin-left:10px;

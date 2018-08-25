@@ -13,18 +13,26 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   inputJSON: {},
+  inputString: '',
 };
 
 
-const marketsReducer = (state=initialState, action) => {
+const bubbleReducer = (state=initialState, action) => {
   const stateCopy = JSON.parse(JSON.stringify(state));
 
   switch(action.type) {
     case types.LOAD_BUBBLES:
-      break;
+      let obj = JSON.parse(stateCopy.inputString);
+      console.log('input: ' ,stateCopy.inputString);
+      stateCopy.inputJSON = obj;
+      return stateCopy;
+    case types.INPUT_CHANGE:
+      console.log('input change:' ,action.payload)
+      stateCopy.inputString = action.payload;
+      return stateCopy;
     default:
       return state;
   }
 };
 
-export default marketsReducer;
+export default bubbleReducer;

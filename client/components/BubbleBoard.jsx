@@ -9,6 +9,35 @@ const BubbleBoard = (props) => {
        
     }
 
+    let theObject = props.object;
+
+    if(!props.object){theObject = {
+      'of': {heaven: 'tongues'},
+      'are': 'fencing',
+      'too': {'many': ['leaves', {'in the':'city'}]},
+      'a': {
+        week: {
+          'of': {heaven: 'tongues'},
+          'are': 'fencing',
+          'too': {'many': ['leaves', {'in the':{
+            'of': {heaven: 'tongues'},
+            'are': 'fencing',
+            'too': {'many': ['leaves', {'in the':'city'}]},
+            'a': {
+              week: 'is',
+              such: {a: {long: {time: 'eras', rot:'like nature'}}}
+            }
+          }}]},
+          'a': {
+            week: 'is',
+            such: {a: {long: {time: 'eras', rot:'like nature'}}}
+          }
+        },
+        such: {a: {long: {time: 'eras', rot:'like nature'}}}
+      }
+    };
+  }
+
     let nodes = []
     let links = [];
 
@@ -42,7 +71,8 @@ const BubbleBoard = (props) => {
   
     const nodeify = (bubble) => {
       let thisNode = {id: nodes.length, nodeLabel: bubble.key, color:'#333333'}
-      if(bubble.data){thisNode.nodeLabel += ':'+bubble.data}
+      if(bubble.data){thisNode.nodeLabel += ' : '+bubble.data}
+      if(thisNode.nodeLabel === undefined){thisNode.nodeLabel = props.name};
       nodes.push(thisNode);
       for(let i = 0; i < bubble.children.length; i++){
         let childNode = nodeify(bubble.children[i])
@@ -76,7 +106,7 @@ const BubbleBoard = (props) => {
 
     
 
-    nodeify(bubbleify(props.object));
+    nodeify(bubbleify(theObject));
 
 
     let bubbleData = {
@@ -86,11 +116,11 @@ const BubbleBoard = (props) => {
 
     let el = 
     <ForceGraph2D graphData = {bubbleData}
-    backgroundColor = "#eeeeee" width={800}
-    height={1800} nodeRelSize={10} linkWidth={8} 
+    backgroundColor = "#eeeeee" width={1200}
+    height={500} nodeRelSize={10} linkWidth={8} 
     nodeCanvasObject = {(node, ctx, globalScale)=>{
       const label = node.nodeLabel;
-      const fontSize = 12;
+      const fontSize = 12/Math.sqrt(globalScale);
       ctx.font = `${fontSize}px Sans-Serif`;
       const textWidth = ctx.measureText(label).width;
       const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 1); // some padding
