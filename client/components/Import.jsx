@@ -3,7 +3,7 @@ import React from 'react';
 const Import = props => {
   return (
     <div>
-      <button>hi</button>
+      <button id="import">Import From</button>
     </div>
   )
 };
