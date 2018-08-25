@@ -1,34 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Well } from 'react-bootstrap';
-import BubbleBoard from '../components/BubbleBoard.jsx';
-
-let myObject = {
-  'of': {heaven: 'tongues'},
-  'are': 'fencing',
-  'too': {'many': ['leaves', {'in the':'city'}]},
-  'a': {
-    week: {
-      'of': {heaven: 'tongues'},
-      'are': 'fencing',
-      'too': {'many': ['leaves', {'in the':{
-        'of': {heaven: 'tongues'},
-        'are': 'fencing',
-        'too': {'many': ['leaves', {'in the':'city'}]},
-        'a': {
-          week: 'is',
-          such: {a: {long: {time: 'eras', rot:'like nature'}}}
-        }
-      }}]},
-      'a': {
-        week: 'is',
-        such: {a: {long: {time: 'eras', rot:'like nature'}}}
-      }
-    },
-    such: {a: {long: {time: 'eras', rot:'like nature'}}}
-  }
-}
-
 
 class BoardContainer extends Component {
   constructor(props) {
