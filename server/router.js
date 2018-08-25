@@ -14,13 +14,13 @@ module.exports = function(app){
   // app.post('/login', UserController.checkUser, UserController.createUser)
   // app.get('/all', UserController.getAllUsers);
 
-  app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+  // app.get('/auth/google',
+  // passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
-  app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/cheese');
-  });
+  // app.get('/auth/google/callback', 
+  //   passport.authenticate('google', { failureRedirect: '/' }),
+  //   function(req, res) {
+  //     res.redirect('/cheese');
+  // });
 
 }

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {GoogleLogin} from 'react-google-login';
-import {Route, Link} from 'react-router-dom';
-import axios from 'axios';
+// import {GoogleLogin} from 'react-google-login';
+// import {Route, Link} from 'react-router-dom';
+// import axios from 'axios';
 
 const Login = (props) => {
   return (
-      <div></div>
+      <div>
+        <button>Login</button>
+      </div>
   )
 }
 
