@@ -36,3 +36,8 @@ body{
 #import {
   color: red;
 }
+
+#login-wrapper {
+  display: flex;
+  justify-content: center;
+}
