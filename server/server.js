@@ -1,13 +1,30 @@
 const express = require('express');
-const bodyParser = require('body-parser'); //to access req.body
-
-//create express server
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const authRoutes = require('./auth-routes');
+const profileRoutes = require('./profile-routes');
+const passportSetup = require('./passport-setup');
+const keys = require('./keys');
+const path = require('path');
+const db = require('./models/db');
 const app = express();
-app.use(bodyParser.json())
-app.use(express.static(__dirname + './../'))
 
-//create server routers
-const router = require('./router');
-router(app);
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}));
 
-app.listen(3000, () => console.log('backend server up! this is run on port 3000, but visit 8080 for the dev server'))
+app.use(express.static(__dirname + './../'));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'))
+});
+
+app.listen(3000, () => {
+    console.log('app now listening for requests on port 3000');
+});

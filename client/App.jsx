@@ -11,8 +11,7 @@
 
 import React, {Component} from 'react';
 import Main from './containers/MainContainer.jsx';
-
-
+import LoginContainer from './containers/LoginContainer.jsx';
 
 class App extends Component {
   constructor(props) {
