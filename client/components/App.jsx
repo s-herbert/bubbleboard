@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Login from './LoginBlock.jsx';
+import Logout from './Logout.jsx';
+import {Switch, Route} from 'react-router-dom';
 
 class App extends Component{
   constructor(props){
@@ -9,7 +12,14 @@ class App extends Component{
   }
   render(){
     return (
-      <div>React Hello World!!</div>
+      // <Switch>
+      //   <Route exact path='/' component={Login}/>
+      //   <Route exact path='/cheese' component={Logout}/>
+      // </Switch>
+      <div>
+        <Login />
+        <Logout />
+      </div>
     )
   }
 }
