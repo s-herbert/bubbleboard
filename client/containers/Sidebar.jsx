@@ -17,8 +17,9 @@ class Sidebar extends Component {
       <Well id="sidebar">
         <h2>bbblbrd</h2>
         <InputField
-          onSubmitHandler={this.props.onSubmit}
-          onChangeHandler={this.props.onChange}
+          handleSubmit={this.props.onSubmit}
+          handleInput={this.props.onInputChange}
+          handleName={this.props.onNameChange}
         />
       </Well>
     );
@@ -36,10 +37,13 @@ const mapDispatchToProps = dispatch => ({
     event.preventDefault();
     dispatch(actions.loadJSON());
   },
-  onChange: event => {
+  onInputChange: event => {
     console.log("changing");
-
     dispatch(actions.inputChange(event.target.value));
+  },
+
+  onNameChange: event=>{
+    dispatch(actions.nameChange(event.target.value));
   }
 });
 

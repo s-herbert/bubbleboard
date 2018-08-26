@@ -22,7 +22,7 @@ class BoardContainer extends Component {
   render() {
     return(
       <Well id="boardContainer">
-        <BubbleBoard object = {this.props.inputData} name={'Test Data'}/>
+        <BubbleBoard object = {this.props.inputData} name={this.props.boardName}/>
       </Well>
     )
   }
@@ -33,7 +33,8 @@ class BoardContainer extends Component {
 const mapStateToProps = store => ({
   //provide pertinent state here
   inputData: store.bubble.inputJSON,
-  hasNewInput: store.bubble.renderBoard
+  hasNewInput: store.bubble.renderBoard,
+  boardName: store.bubble.boardName,
 });
 
 const mapDispatchToProps = dispatch => ({
