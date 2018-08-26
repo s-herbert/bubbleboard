@@ -47,9 +47,8 @@ const BubbleBoard = props => {
     if (bubble.data) {
       thisNode.nodeLabel += " : " + bubble.data;
     }
-    if (thisNode.nodeLabel === undefined) {
-      thisNode.nodeLabel = 'Root';
-    }
+    if (thisNode.nodeLabel === undefined) thisNode.nodeLabel = props.name;
+
     nodes.push(thisNode);
     for (let i = 0; i < bubble.children.length; i++) {
       let childNode = nodeify(bubble.children[i]);
@@ -107,6 +106,7 @@ const BubbleBoard = props => {
       height={400}
       nodeRelSize={10}
       linkWidth={8}
+      linkColor="#FFFFFF"
       nodeCanvasObject={(node, ctx, globalScale) => {
         const label = node.nodeLabel;
         const fontSize = 12 / Math.sqrt(globalScale);
