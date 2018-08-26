@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Visualize your data structure into a bubble map",
   "main": "index.js",
-  "babel":{
-    "plugins": ["transform-object-rest-spread"],
-    "ignore": ["/node_modules/"]
+  "babel": {
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
+    "ignore": [
+      "/node_modules/"
+    ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,8 +40,6 @@
   "dependencies": {
     "concurrently": "^3.6.1",
     "express": "^4.16.3",
-    "konva": "^2.2.2",
-    "matter-js": "^0.14.2",
     "mongoose": "^5.2.9",
     "nodemon": "^1.18.3",
     "react": "^16.4.2",
