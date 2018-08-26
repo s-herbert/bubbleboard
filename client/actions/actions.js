@@ -12,10 +12,16 @@
 // import actionType constants
 import * as types from '../constants/actionTypes'
 
-export const loadJSON = (json) => {
-  console.log("addCard action creator called");
+export const loadJSON = () => {
+  console.log("loadJSON action creator called");
   return {
   type: types.LOAD_BUBBLES,
-  payload: json,
   }
 };
+
+export const inputChange = (string) =>{
+  return{
+    type: types.INPUT_CHANGE,
+    payload: string,
+  }
+}

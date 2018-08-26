@@ -8,6 +8,10 @@ import Export from "../components/Export.jsx";
 import Import from "../components/Import.jsx";
 import RemoveBubble from "../components/RemoveBubble.jsx";
 import { Well } from "react-bootstrap";
+import TextInput from '../components/textInput.jsx';
+import * as actions from '../actions/actions';
+
+
 
 class Sidebar extends Component {
   constructor(props) {
@@ -21,8 +25,8 @@ class Sidebar extends Component {
           <h2>SIDEBAR</h2>
           <BoardSelector />
           <SaveBoard />
+          <TextInput onSubmitHandler = {this.props.onSubmit} onChangeHandler = {this.props.onChange}/>
           <Export />
-          <Import />
           <RemoveBubble />
         </Well>
 
@@ -36,6 +40,15 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
+  onSubmit: (event) =>{
+    console.log('event.target: ', event.target);
+    event.preventDefault();
+    dispatch(actions.loadJSON())
+  },
+  onChange: (event) =>{
+    console.log('changing');
+    dispatch(actions.inputChange(event.target.value));
+  }
 });
 
 export default connect(
