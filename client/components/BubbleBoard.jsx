@@ -42,7 +42,7 @@ const BubbleBoard = props => {
     let thisNode = {
       id: nodes.length,
       nodeLabel: bubble.key,
-      color: "#dddddd"
+      color: "#000000"
     };
     if (bubble.data) {
       thisNode.nodeLabel += " : " + bubble.data;
@@ -101,19 +101,19 @@ const BubbleBoard = props => {
   let el = (
     <ForceGraph2D
       graphData={bubbleData}
-      backgroundColor="#000000"
-      width={600}
-      height={400}
+      backgroundColor="#abcef9"
+      width={720}
+      height={480}
       nodeRelSize={10}
-      linkWidth={8}
-      linkColor="#FFFFFF"
+      linkWidth={4}
+      linkColor="#ffffff"
       nodeCanvasObject={(node, ctx, globalScale) => {
         const label = node.nodeLabel;
         const fontSize = 12 / Math.sqrt(globalScale);
         ctx.font = `${fontSize}px Sans-Serif`;
         const textWidth = ctx.measureText(label).width;
         const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 1); // some padding
-        ctx.fillStyle = "rgba(30,144,255 ,1 )";
+        ctx.fillStyle = "rgba(30, 144, 255, 1)";
         ctx.fillRect(
           node.x - bckgDimensions[0] / 2,
           node.y - bckgDimensions[1] / 2,
