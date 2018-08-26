@@ -25,3 +25,10 @@ export const inputChange = (string) =>{
     payload: string,
   }
 }
+
+export const nameChange = string =>{
+  return{
+    type: types.NAME_CHANGE,
+    payload: string,
+  }
+}

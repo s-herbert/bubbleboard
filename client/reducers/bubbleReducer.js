@@ -15,6 +15,7 @@ import RJSON from "relaxed-json";
 const initialState = {
   inputJSON: {},
   inputString: "",
+  boardName:"root/",
   renderBoard: false
 };
 
@@ -31,8 +32,14 @@ const bubbleReducer = (state = initialState, action) => {
       console.log('newState.inputString: ', action.payload)
       return { ...state,
         inputString: action.payload,
-        renderBoard: false
+        renderBoard: false,
       };
+    case types.NAME_CHANGE:
+      return {
+        ...state,
+        boardName: action.payload,
+        renderBoard: false,
+      }
     default:
       return state;
   }
