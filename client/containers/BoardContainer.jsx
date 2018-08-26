@@ -9,6 +9,16 @@ class BoardContainer extends Component {
   constructor(props) {
     super(props);
   }
+
+  shouldComponentUpdate(nextState,nextProps){
+    console.log('sCompUp? next state: ', nextState);
+    return nextState.hasNewInput;
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    console.log('updated board container!');
+  }
+
   render() {
     return(
       <Well id="boardContainer">
@@ -16,13 +26,14 @@ class BoardContainer extends Component {
       </Well>
     )
   }
-}
 
-BoardContainer.propTypes = {};
+
+}
 
 const mapStateToProps = store => ({
   //provide pertinent state here
-  inputData: store.bubble.inputJSON
+  inputData: store.bubble.inputJSON,
+  hasNewInput: store.bubble.renderBoard
 });
 
 const mapDispatchToProps = dispatch => ({

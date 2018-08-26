@@ -1,8 +1,9 @@
 # exclude everything
-build/*
+./build/
+build/webpack-bundle.js
 
 # exception to the rule, can't commit empty folders
-!build/.gitkeep 
+#!build/.gitkeep 
 node_modules
 server/keys.js
 

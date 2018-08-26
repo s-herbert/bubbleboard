@@ -1,35 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Well } from "react-bootstrap";
 
 //CHILDREN
-import BoardSelector from "../components/BoardSelector.jsx";
-import SaveBoard from "../components/SaveBoard.jsx";
-import Export from "../components/Export.jsx";
-import Import from "../components/Import.jsx";
-import RemoveBubble from "../components/RemoveBubble.jsx";
-import { Well } from "react-bootstrap";
-import TextInput from '../components/textInput.jsx';
-import * as actions from '../actions/actions';
-
-
+import InputField from "../components/InputField.jsx";
+import * as actions from "../actions/actions";
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {} = this.props;
     return (
-  
-        <Well id="sidebar">
-          <h2>SIDEBAR</h2>
-          <BoardSelector />
-          <SaveBoard />
-          <TextInput onSubmitHandler = {this.props.onSubmit} onChangeHandler = {this.props.onChange}/>
-          <Export />
-          <RemoveBubble />
-        </Well>
-
+      <Well id="sidebar">
+        <h2>bbblbrd</h2>
+        <InputField
+          onSubmitHandler={this.props.onSubmit}
+          onChangeHandler={this.props.onChange}
+        />
+      </Well>
     );
   }
 }
@@ -40,13 +31,14 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
-  onSubmit: (event) =>{
-    console.log('event.target: ', event.target);
+  onSubmit: event => {
+    console.log("event.target: ", event.target);
     event.preventDefault();
-    dispatch(actions.loadJSON())
+    dispatch(actions.loadJSON());
   },
-  onChange: (event) =>{
-    console.log('changing');
+  onChange: event => {
+    console.log("changing");
+
     dispatch(actions.inputChange(event.target.value));
   }
 });
