@@ -16,15 +16,16 @@ const initialState = {
 };
 
 
-const marketsReducer = (state=initialState, action) => {
+const bubbleReducer = (state=initialState, action) => {
   const stateCopy = JSON.parse(JSON.stringify(state));
 
   switch(action.type) {
     case types.LOAD_BUBBLES:
-      break;
+      stateCopy.inputJSON = action.payload;
+      return stateCopy;
     default:
       return state;
   }
 };
 
-export default marketsReducer;
+export default bubbleReducer;

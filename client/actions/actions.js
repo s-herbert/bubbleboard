@@ -13,7 +13,7 @@
 import * as types from '../constants/actionTypes'
 
 export const loadJSON = (json) => {
-  console.log("addCard action creator called");
+  console.log("loadJSON action creator called");
   return {
   type: types.LOAD_BUBBLES,
   payload: json,
