@@ -23,7 +23,7 @@ body {
   background: lightblue;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -31,6 +31,7 @@ body {
   max-width: 100%;
   min-width: 72px;
   max-height: 54vh;
+  min-height: 40vh;
 }
 
 canvas {
@@ -46,6 +47,8 @@ canvas {
   margin-right: 10px;
   min-height: 404px;
   min-width: 604px;
+  display:flex;
+  justify-content: center;
 }
 
 #import {
