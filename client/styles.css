@@ -34,7 +34,7 @@ body {
   min-height: 40vh;
 }
 
-canvas {
+#theBoard {
   border: solid 1px slateblue;
   border-radius: 4px;
 }
