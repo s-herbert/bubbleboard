@@ -51,6 +51,11 @@ body {
   justify-content: center;
 }
 
+canvas {
+  border: solid 1px slateblue;
+  border-radius: 4px;
+}
+
 #import {
   color: red;
 }
